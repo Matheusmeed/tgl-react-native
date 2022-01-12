@@ -6,9 +6,13 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store';
 
 const Routes = () => {
+  const token = useSelector(
+    (state: RootState) => state.stock.userInfo.token.token
+  );
+
   return (
     <NavigationContainer>
-      <NotLoggedRoutes />
+      {token ? <LoggedRoutes /> : <NotLoggedRoutes />}
     </NavigationContainer>
   );
 };

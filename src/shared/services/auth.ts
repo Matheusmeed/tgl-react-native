@@ -1,3 +1,4 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from './api';
 
 interface ILogin {
@@ -14,14 +15,15 @@ export const login = async (content: ILogin) => {
       password: content.password.trim(),
     })
     .then((res) => {
+      AsyncStorage.setItem('@token', res.data.token.token);
       response = res.data;
-      localStorage.setItem('token', res.data.token.token);
     })
-    .catch(() => {
+    .catch((error) => {
       // Notification({
       //   message: 'Conta inválida...',
       //   type: 'danger',
       // });
+      response = false;
     });
   return response;
 };

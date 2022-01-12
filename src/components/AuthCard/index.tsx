@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import {} from '../../shared';
 import { RootState } from '../../store';
 import { saveUserInfo, setResetToken } from '../../store/Stock.store';
+import ErrorMessage from '../ErrorMessage';
 
 const AuthCard = (props: AuthProps) => {
   const navigation = useNavigation<NavigationProps>();
@@ -28,19 +29,18 @@ const AuthCard = (props: AuthProps) => {
   const [pass, setPass] = useState('');
   const [pass2, setPass2] = useState('');
   const [name, setName] = useState('');
-  const [errorEmail, setEmailError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [passError, setPassError] = useState(false);
   const [pass2Error, setPass2Error] = useState(false);
   const [nameError, setNameError] = useState(false);
 
   async function logIn() {
-    if (errorEmail || !pass || !email) {
+    if (emailError || !pass || !email) {
       console.log('Você deve preencher todos os campos corretamente');
     } else {
       const data = await login({ email: email, password: pass });
       if (data) {
         dispatch(saveUserInfo(data));
-        navigation.navigate('bet');
         console.log(data);
       } else {
         console.log(data);
@@ -49,7 +49,7 @@ const AuthCard = (props: AuthProps) => {
   }
 
   async function handleRegistration() {
-    if (!name || !pass || !email || errorEmail || passError || nameError) {
+    if (!name || !pass || !email || emailError || passError || nameError) {
       console.log('Preencha todos os campos corretamente');
     } else {
       const data = await createUser(email, name, pass);
@@ -58,21 +58,20 @@ const AuthCard = (props: AuthProps) => {
         const dataLogin = await login({ email: email, password: pass });
         if (dataLogin) {
           dispatch(saveUserInfo(dataLogin));
-          navigation.navigate('bet');
         }
       }
     }
   }
 
   async function handleForgotPass() {
-    if (errorEmail || !email) {
+    if (emailError || !email) {
       console.log('Preencha o email corretamente');
     } else {
       const data = await changePass(email);
 
       if (data) {
         dispatch(setResetToken(data));
-        navigation.navigate('/resetpass');
+        navigation.navigate('ResetPass');
       }
     }
   }
@@ -135,52 +134,77 @@ const AuthCard = (props: AuthProps) => {
       setNameError(false);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email, pass, name]);
+  }, [email, pass, name, pass2]);
 
   return (
     <Container>
       {props.hasName && (
-        <InputView>
-          <TextInput
-            placeholder='Name'
-            onChangeText={(text) => setName(text)}
-          ></TextInput>
-        </InputView>
+        <>
+          <InputView>
+            <TextInput
+              placeholder='Name'
+              onChangeText={(text) => setName(text)}
+              onBlur={() => check()}
+            ></TextInput>
+          </InputView>
+          {nameError && <ErrorMessage>Nome incorreto</ErrorMessage>}
+        </>
       )}
       {props.hasEmail && (
-        <InputView>
-          <TextInput
-            placeholder='Email'
-            onChangeText={(text) => setEmail(text)}
-          ></TextInput>
-        </InputView>
+        <>
+          <InputView>
+            <TextInput
+              placeholder='Email'
+              onChangeText={(text) => setEmail(text)}
+              onBlur={() => check()}
+            ></TextInput>
+          </InputView>
+          {props.screen !== 'Authentication' && emailError && (
+            <ErrorMessage>Email incorreto</ErrorMessage>
+          )}
+        </>
       )}
       {props.hasPassword && props.screen !== 'New password' && (
-        <InputView>
-          <TextInput
-            placeholder='Password'
-            onChangeText={(text) => setPass(text)}
-          ></TextInput>
-        </InputView>
+        <>
+          <InputView>
+            <TextInput
+              secureTextEntry={true}
+              placeholder='Password'
+              onChangeText={(text) => setPass(text)}
+              onBlur={() => check()}
+            ></TextInput>
+          </InputView>
+          {props.screen !== 'Authentication' && passError && (
+            <ErrorMessage>Senha incorreta</ErrorMessage>
+          )}
+        </>
       )}
 
       {props.hasPassword && props.screen === 'New password' && (
         <>
           <InputView>
             <TextInput
+              secureTextEntry={true}
               placeholder='Password'
               onChangeText={(text) => setPass(text)}
               onBlur={() => checkResetPass(1)}
             ></TextInput>
           </InputView>
+          {passError && <ErrorMessage>Senha incorreta</ErrorMessage>}
 
           <InputView>
             <TextInput
+              secureTextEntry={true}
               placeholder='Confirm password'
               onChangeText={(text) => setPass2(text)}
               onBlur={() => checkResetPass(2)}
             ></TextInput>
           </InputView>
+          {pass2Error ? (
+            <ErrorMessage>Senha incorreta</ErrorMessage>
+          ) : (
+            <Text></Text>
+          )}
         </>
       )}
 
