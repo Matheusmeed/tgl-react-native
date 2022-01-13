@@ -1,4 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { showMessage } from 'react-native-flash-message';
 import api from './api';
 
 interface ILogin {
@@ -16,13 +17,23 @@ export const login = async (content: ILogin) => {
     })
     .then((res) => {
       AsyncStorage.setItem('@token', res.data.token.token);
+
+      showMessage({
+        icon: 'success',
+        message: 'Login realizado',
+        type: 'success',
+        duration: 1400,
+      });
+
       response = res.data;
     })
-    .catch((error) => {
-      // Notification({
-      //   message: 'Conta inválida...',
-      //   type: 'danger',
-      // });
+    .catch(() => {
+      showMessage({
+        icon: 'danger',
+        message: 'Essa conta não existe...',
+        type: 'danger',
+        duration: 3000,
+      });
       response = false;
     });
   return response;
@@ -34,13 +45,22 @@ export const changePass = async (email: string) => {
     .post('/reset', { email: email.trim() })
     .then((res) => {
       response = res.data.token;
+
+      showMessage({
+        icon: 'success',
+        message: 'Email válido',
+        type: 'success',
+        duration: 1000,
+      });
     })
     .catch(() => {
-      // Notification({
-      //   type: 'danger',
-      //   message: 'Esse email não existe',
-      //   title: 'ERRO',
-      // });
+      showMessage({
+        icon: 'danger',
+        message: 'Erro',
+        description: 'Esse email não existe...',
+        type: 'danger',
+        duration: 3000,
+      });
     });
   return response;
 };
@@ -51,17 +71,21 @@ export const resetPass = async (token: string, pass: string) => {
     .post(`/reset/${token}`, { password: pass.trim() })
     .then(() => {
       response = true;
-      // Notification({
-      //   message: 'Senha atualizada com sucesso!',
-      //   type: 'success',
-      // });
+      showMessage({
+        icon: 'success',
+        message: 'Senha atualizada com sucesso!',
+        description: 'Agora faça o seu login',
+        type: 'success',
+        duration: 3000,
+      });
     })
     .catch(() => {
-      // Notification({
-      //   title: 'ERRO',
-      //   message: 'Aconteceu algum erro :(',
-      //   type: 'danger',
-      // })
+      showMessage({
+        icon: 'danger',
+        message: 'Aconteceu algum erro :(',
+        type: 'danger',
+        duration: 3000,
+      });
     });
   return response;
 };

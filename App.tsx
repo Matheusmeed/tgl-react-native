@@ -3,6 +3,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { WrapperContainer } from './styles';
 import AppLoading from 'expo-app-loading';
+import FlashMessage from 'react-native-flash-message';
 
 import {
   Roboto_400Regular_Italic,
@@ -33,6 +34,7 @@ export default function App() {
       </Provider>
 
       <StatusBar style='dark' backgroundColor='transparent' translucent />
+      <FlashMessage />
     </WrapperContainer>
   );
 }

@@ -1,4 +1,4 @@
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Alert, Text, TextInput, TouchableOpacity } from 'react-native';
 import { Container, InputView, MainButtonDiv, MainButtonText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
 import { AuthProps, NavigationProps } from '../@types/AuthProps';
@@ -19,6 +19,7 @@ import {} from '../../shared';
 import { RootState } from '../../store';
 import { saveUserInfo, setResetToken } from '../../store/Stock.store';
 import ErrorMessage from '../ErrorMessage';
+import { showMessage } from 'react-native-flash-message';
 
 const AuthCard = (props: AuthProps) => {
   const navigation = useNavigation<NavigationProps>();
@@ -36,21 +37,28 @@ const AuthCard = (props: AuthProps) => {
 
   async function logIn() {
     if (emailError || !pass || !email) {
-      console.log('Você deve preencher todos os campos corretamente');
+      showMessage({
+        icon: 'warning',
+        message: 'Você deve preencher todos os campos corretamente!',
+        type: 'warning',
+        duration: 3000,
+      });
     } else {
       const data = await login({ email: email, password: pass });
       if (data) {
         dispatch(saveUserInfo(data));
-        console.log(data);
-      } else {
-        console.log(data);
       }
     }
   }
 
   async function handleRegistration() {
     if (!name || !pass || !email || emailError || passError || nameError) {
-      console.log('Preencha todos os campos corretamente');
+      showMessage({
+        icon: 'warning',
+        message: 'Preencha todos os campos corretamente!',
+        type: 'warning',
+        duration: 3000,
+      });
     } else {
       const data = await createUser(email, name, pass);
 
@@ -65,7 +73,12 @@ const AuthCard = (props: AuthProps) => {
 
   async function handleForgotPass() {
     if (emailError || !email) {
-      console.log('Preencha o email corretamente');
+      showMessage({
+        icon: 'warning',
+        message: 'Preencha o email corretamente!',
+        type: 'warning',
+        duration: 2000,
+      });
     } else {
       const data = await changePass(email);
 
@@ -78,13 +91,27 @@ const AuthCard = (props: AuthProps) => {
 
   async function handleResetPass() {
     if (!pass || !pass2) {
-      console.log('Preencha todos os campos');
+      showMessage({
+        icon: 'warning',
+        message: 'Preencha todos os campos!',
+        type: 'warning',
+        duration: 2000,
+      });
     } else if (pass !== pass2) {
-      console.log('As senhas estão diferentes');
+      showMessage({
+        icon: 'danger',
+        message: 'As senhas estão diferentes!',
+        type: 'danger',
+        duration: 3000,
+      });
     } else if (!passRegex.test(pass)) {
-      console.log(
-        'Sua senha precisa ter pelo menos 6 caracteres, incluindo um número.'
-      );
+      showMessage({
+        icon: 'danger',
+        message:
+          'Sua senha precisa ter pelo menos 6 caracteres, incluindo um número.',
+        type: 'danger',
+        duration: 3000,
+      });
     } else {
       const data = await resetPass(stock.resetToken, pass);
 
@@ -231,7 +258,11 @@ const AuthCard = (props: AuthProps) => {
         )}
 
         {props.screen === 'Authentication' && (
-          <TouchableOpacity onPress={() => logIn()}>
+          <TouchableOpacity
+            onPress={() => {
+              logIn();
+            }}
+          >
             <MainButtonText>
               Log In <Ionicons name='arrow-forward' size={20} />
             </MainButtonText>
