@@ -20,6 +20,7 @@ import { RootState } from '../../store';
 import { saveUserInfo, setResetToken } from '../../store/Stock.store';
 import ErrorMessage from '../ErrorMessage';
 import { showMessage } from 'react-native-flash-message';
+import { alertDanger, alertWarning } from '../../shared/helpers/Functions';
 
 const AuthCard = (props: AuthProps) => {
   const navigation = useNavigation<NavigationProps>();
@@ -37,12 +38,7 @@ const AuthCard = (props: AuthProps) => {
 
   async function logIn() {
     if (emailError || !pass || !email) {
-      showMessage({
-        icon: 'warning',
-        message: 'Você deve preencher todos os campos corretamente!',
-        type: 'warning',
-        duration: 3000,
-      });
+      alertWarning('Você deve preencher todos os campos corretamente!');
     } else {
       const data = await login({ email: email, password: pass });
       if (data) {
@@ -53,12 +49,7 @@ const AuthCard = (props: AuthProps) => {
 
   async function handleRegistration() {
     if (!name || !pass || !email || emailError || passError || nameError) {
-      showMessage({
-        icon: 'warning',
-        message: 'Preencha todos os campos corretamente!',
-        type: 'warning',
-        duration: 3000,
-      });
+      alertWarning('Preencha todos os campos corretamente!');
     } else {
       const data = await createUser(email, name, pass);
 
@@ -73,12 +64,7 @@ const AuthCard = (props: AuthProps) => {
 
   async function handleForgotPass() {
     if (emailError || !email) {
-      showMessage({
-        icon: 'warning',
-        message: 'Preencha o email corretamente!',
-        type: 'warning',
-        duration: 2000,
-      });
+      alertWarning('Preencha o email corretamente!');
     } else {
       const data = await changePass(email);
 
@@ -91,27 +77,13 @@ const AuthCard = (props: AuthProps) => {
 
   async function handleResetPass() {
     if (!pass || !pass2) {
-      showMessage({
-        icon: 'warning',
-        message: 'Preencha todos os campos!',
-        type: 'warning',
-        duration: 2000,
-      });
+      alertWarning('Preencha todos os campos!');
     } else if (pass !== pass2) {
-      showMessage({
-        icon: 'danger',
-        message: 'As senhas estão diferentes!',
-        type: 'danger',
-        duration: 3000,
-      });
+      alertDanger('As senhas estão diferentes!');
     } else if (!passRegex.test(pass)) {
-      showMessage({
-        icon: 'danger',
-        message:
-          'Sua senha precisa ter pelo menos 6 caracteres, incluindo um número.',
-        type: 'danger',
-        duration: 3000,
-      });
+      alertDanger(
+        'Sua senha precisa ter pelo menos 6 caracteres, incluindo um número.'
+      );
     } else {
       const data = await resetPass(stock.resetToken, pass);
 

@@ -1,5 +1,5 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { showMessage } from 'react-native-flash-message';
+import { alertDanger, alertSuccess } from '../helpers/Functions';
 import api from './api';
 
 interface ILogin {
@@ -17,23 +17,13 @@ export const login = async (content: ILogin) => {
     })
     .then((res) => {
       AsyncStorage.setItem('@token', res.data.token.token);
-
-      showMessage({
-        icon: 'success',
-        message: 'Login realizado',
-        type: 'success',
-        duration: 1400,
-      });
+      alertSuccess('Login realizado');
 
       response = res.data;
     })
     .catch(() => {
-      showMessage({
-        icon: 'danger',
-        message: 'Essa conta não existe...',
-        type: 'danger',
-        duration: 3000,
-      });
+      alertDanger('Essa conta não existe...');
+
       response = false;
     });
   return response;
@@ -45,22 +35,10 @@ export const changePass = async (email: string) => {
     .post('/reset', { email: email.trim() })
     .then((res) => {
       response = res.data.token;
-
-      showMessage({
-        icon: 'success',
-        message: 'Email válido',
-        type: 'success',
-        duration: 1000,
-      });
+      alertSuccess('Email válido');
     })
     .catch(() => {
-      showMessage({
-        icon: 'danger',
-        message: 'Erro',
-        description: 'Esse email não existe...',
-        type: 'danger',
-        duration: 3000,
-      });
+      alertDanger('Esse email não existe...');
     });
   return response;
 };
@@ -71,21 +49,10 @@ export const resetPass = async (token: string, pass: string) => {
     .post(`/reset/${token}`, { password: pass.trim() })
     .then(() => {
       response = true;
-      showMessage({
-        icon: 'success',
-        message: 'Senha atualizada com sucesso!',
-        description: 'Agora faça o seu login',
-        type: 'success',
-        duration: 3000,
-      });
+      alertSuccess('Senha atualizada com sucesso!', 'Realize seu login.');
     })
     .catch(() => {
-      showMessage({
-        icon: 'danger',
-        message: 'Aconteceu algum erro :(',
-        type: 'danger',
-        duration: 3000,
-      });
+      alertDanger('Aconteceu algum erro :(');
     });
   return response;
 };
