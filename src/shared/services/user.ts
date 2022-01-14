@@ -1,4 +1,4 @@
-// import { Notification } from '@components/index';
+import { alertDanger, alertSuccess } from '../helpers/Functions';
 import api from './api';
 
 export const createUser = async (email: string, name: string, pass: string) => {
@@ -11,16 +11,10 @@ export const createUser = async (email: string, name: string, pass: string) => {
     })
     .then((res) => {
       response = res.data;
-      //   Notification({
-      //     message: 'Conta criada com sucesso!',
-      //     type: 'success',
-      //   });
+      alertSuccess('Conta criada com sucesso!');
     })
     .catch(() => {
-      //   Notification({
-      //     message: 'Esse email já existe!',
-      //     type: 'danger',
-      //   })
+      alertDanger('Esse email já existe!');
     });
   return response;
 };
@@ -35,14 +29,11 @@ export const updateUser = async (email: string, name: string) => {
     .then((res) => {
       response = res.data.name;
 
-      //   Notification({
-      //     message: 'Nome alterado com sucesso!',
-      //     type: 'success',
-      //     duration: 5000,
-      //   });
+      alertSuccess('Nome alterado com sucesso!');
     })
-    .catch(() => {
-      //   Notification({ message: 'Aconteceu algum erro :(', type: 'danger' })
+    .catch((error) => {
+      alertDanger('Aconteceu algum erro :(');
+      console.log(error);
     });
   return response;
 };

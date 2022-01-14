@@ -1,4 +1,4 @@
-import { Alert, Text, TextInput, TouchableOpacity } from 'react-native';
+import { Text, TextInput, TouchableOpacity } from 'react-native';
 import { Container, InputView, MainButtonDiv, MainButtonText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
 import { AuthProps, NavigationProps } from '../@types/AuthProps';
@@ -15,11 +15,9 @@ import {
   resetPass,
 } from '../../shared';
 import { useDispatch, useSelector } from 'react-redux';
-import {} from '../../shared';
 import { RootState } from '../../store';
 import { saveUserInfo, setResetToken } from '../../store/Stock.store';
 import ErrorMessage from '../ErrorMessage';
-import { showMessage } from 'react-native-flash-message';
 import { alertDanger, alertWarning } from '../../shared/helpers/Functions';
 
 const AuthCard = (props: AuthProps) => {
@@ -199,11 +197,7 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => checkResetPass(2)}
             ></TextInput>
           </InputView>
-          {pass2Error ? (
-            <ErrorMessage>Senha incorreta</ErrorMessage>
-          ) : (
-            <Text></Text>
-          )}
+          {pass2Error && <ErrorMessage>Senha incorreta</ErrorMessage>}
         </>
       )}
 
@@ -252,8 +246,7 @@ const AuthCard = (props: AuthProps) => {
         {props.screen === 'Reset password' && (
           <TouchableOpacity onPress={() => handleForgotPass()}>
             <MainButtonText>
-              Send link
-              <Ionicons name='arrow-forward' size={20} />
+              Send link <Ionicons name='arrow-forward' size={20} />
             </MainButtonText>
           </TouchableOpacity>
         )}

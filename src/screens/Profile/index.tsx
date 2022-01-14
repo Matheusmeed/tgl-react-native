@@ -1,6 +1,5 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
-import { Modalize } from 'react-native-modalize';
 
 import {
   AccountInfoView,
@@ -14,18 +13,24 @@ import {
   BtnLeave,
   BtnLeaveTxt,
 } from './styles';
-import { StyleSheet, Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-
-type modalizeProp = {
-  open: Function;
-};
+import ModalProfile from '../../components/Modal';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
+import { formatDate } from '../../shared';
+import { clearBetList, removeUserInfo } from '../../store/Stock.store';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = () => {
-  const modalizeRef: any = useRef(null);
+  const [modalActive, setModalActive] = useState(false);
+  const [modalType, setModalType] = useState('name');
+  const userInfo = useSelector((state: RootState) => state.stock.userInfo.user);
 
-  function onOpen() {
-    modalizeRef.current?.open();
+  const dispatch = useDispatch();
+
+  function handleLeave() {
+    dispatch(clearBetList([{}]));
+    dispatch(removeUserInfo());
+    AsyncStorage.removeItem('token');
   }
 
   return (
@@ -34,60 +39,44 @@ const Profile = () => {
         <Card>
           <AccountInfoView>
             <Title>Nome</Title>
-            <TextInfo>Matheus</TextInfo>
+            <TextInfo>{userInfo.name}</TextInfo>
             <Title>Email</Title>
-            <TextInfo>Matheus</TextInfo>
+            <TextInfo>{userInfo.email}</TextInfo>
             <Title>Conta criada em</Title>
-            <TextInfo>Matheus</TextInfo>
+            <TextInfo>{formatDate(userInfo.created_at)}</TextInfo>
           </AccountInfoView>
           <BtnsView>
-            <Button onPress={onOpen}>
+            <Button
+              onPress={() => {
+                setModalType('name');
+                setModalActive(true);
+              }}
+            >
               <TextButton>Alterar nome</TextButton>
             </Button>
-            <Button>
+            <Button
+              onPress={() => {
+                setModalType('password');
+                setModalActive(true);
+              }}
+            >
               <TextButton>Alterar senha</TextButton>
             </Button>
           </BtnsView>
         </Card>
         <BtnLeave>
-          <BtnLeaveTxt>
+          <BtnLeaveTxt onPress={handleLeave}>
             Sair <Entypo name='log-out' size={15} color='red' />
           </BtnLeaveTxt>
         </BtnLeave>
+        <ModalProfile
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+          type={modalType}
+        />
       </Container>
-      <Modalize ref={modalizeRef} snapPoint={180}>
-        <View
-          style={{
-            flex: 1,
-            height: 180,
-            flexDirection: 'row',
-            justifyContent: 'center',
-            alignContent: 'center',
-          }}
-        >
-          <TouchableOpacity
-            style={[styles.botao, { backgroundColor: '#29ae19' }]}
-          >
-            <Text>editar</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={[styles.botao, { backgroundColor: '#ff0000' }]}
-          >
-            <Text>excluir</Text>
-          </TouchableOpacity>
-        </View>
-      </Modalize>
     </>
   );
 };
-
-const styles = StyleSheet.create({
-  botao: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 15,
-    borderRadius: 7,
-  },
-});
 
 export default Profile;

@@ -35,6 +35,7 @@ export const alertWarning = (message: string, description?: string) => {
     duration: 2500,
     hideStatusBar: true,
     floating: true,
+    style: { elevation: 2 },
   });
 };
 export const alertSuccess = (message: string, description?: string) => {
@@ -43,7 +44,7 @@ export const alertSuccess = (message: string, description?: string) => {
     type: 'success',
     message: message,
     description: description,
-    duration: 1400,
+    duration: 2000,
     hideStatusBar: true,
     floating: true,
   });

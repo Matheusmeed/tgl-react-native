@@ -5,7 +5,6 @@ import AuthCard from '../AuthCard';
 import { useNavigation } from '@react-navigation/native';
 import { AuthProps, NavigationProps } from '../@types/AuthProps';
 import { useEffect, useState } from 'react';
-import Notification from '../../shared/helpers/Notification';
 
 const AuthDiv = (props: AuthProps) => {
   const navigation = useNavigation<NavigationProps>();

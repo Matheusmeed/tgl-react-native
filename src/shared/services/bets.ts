@@ -1,4 +1,4 @@
-// import { Notification } from '@components/index';
+import { alertDanger, alertSuccess } from '../helpers/Functions';
 import api from './api';
 
 export const listBet = async (games: string[]) => {
@@ -16,7 +16,7 @@ export const listBet = async (games: string[]) => {
     .get(`/bet/all-bets?${gamesArr.join('')}` || `/bet/all-bets`, {})
     .then((res) => (response = res.data.reverse()))
     .catch(() => {
-      //   Notification({ message: 'Ocorreu algum erro!', type: 'danger' })
+      alertDanger('Ocorreu algum erro!');
     });
   return response;
 };
@@ -30,22 +30,12 @@ export const newBet = async (
     .post('/bet/new-bet', { games })
     .then(() => {
       response = true;
-      //   Notification({
-      //     message: 'Suas apostas foram salvas!',
-      //     type: 'success',
-      //   });
+      alertSuccess('Suas apostas foram salvas!');
     })
-    .catch(
-      (error) => error.response
-      // ? Notification({
-      //     title: 'Erro',
-      //     message: `O valor mínimo autorizado é R$${minValue},00!`,
-      //     type: 'danger',
-      //   })
-      // : Notification({
-      //     message: 'Aconteceu algum erro :(',
-      //     type: 'danger',
-      //   })
+    .catch((error) =>
+      error.response
+        ? alertDanger('Erro', `O valor mínimo autorizado é R$${minValue},00!`)
+        : alertDanger('Aconteceu algum erro :(')
     );
   return response;
 };

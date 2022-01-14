@@ -26,12 +26,13 @@ export const Title = styled.Text`
   font-family: ${theme.fonts.boldItalic};
   color: ${theme.colors.secondary};
   font-size: 17px;
+  margin-bottom: 2px;
 `;
 
 export const TextInfo = styled.Text`
   font-family: ${theme.fonts.boldItalic};
   color: ${theme.colors.primary};
-  padding-bottom: 15px;
+  padding-bottom: 12px;
 `;
 
 export const BtnsView = styled.View`

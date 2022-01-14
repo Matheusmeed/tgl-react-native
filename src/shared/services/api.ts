@@ -5,8 +5,8 @@ const api = axios.create({
   baseURL: 'http://192.168.0.57:3333',
 });
 
-api.interceptors.request.use(function (config) {
-  const token = getToken();
+api.interceptors.request.use(async function (config) {
+  const token = await getToken();
   if (config.headers) config.headers.Authorization = `Bearer ${token}`;
 
   return config;

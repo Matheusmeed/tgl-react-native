@@ -15,8 +15,8 @@ export const login = async (content: ILogin) => {
       email: content.email.trim(),
       password: content.password.trim(),
     })
-    .then((res) => {
-      AsyncStorage.setItem('@token', res.data.token.token);
+    .then(async (res) => {
+      await AsyncStorage.setItem('token', res.data.token.token);
       alertSuccess('Login realizado');
 
       response = res.data;
@@ -49,7 +49,7 @@ export const resetPass = async (token: string, pass: string) => {
     .post(`/reset/${token}`, { password: pass.trim() })
     .then(() => {
       response = true;
-      alertSuccess('Senha atualizada com sucesso!', 'Realize seu login.');
+      alertSuccess('Senha atualizada com sucesso!');
     })
     .catch(() => {
       alertDanger('Aconteceu algum erro :(');
