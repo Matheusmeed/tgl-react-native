@@ -3,7 +3,7 @@ import { theme } from '../../shared/styles/theme';
 
 export const Container = styled.ScrollView`
   flex: 1;
-  padding-top: 30px;
+  padding-top: 40px;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 20px;

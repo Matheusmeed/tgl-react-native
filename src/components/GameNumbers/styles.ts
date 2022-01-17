@@ -31,7 +31,7 @@ export const ContainerGameButtons = styled.View`
   align-items: center;
   justify-content: center;
   margin-top: 4px;
-  margin-bottom: 45px;
+  margin-bottom: 55px;
 `;
 
 export const GameBtn = styled.TouchableOpacity`
