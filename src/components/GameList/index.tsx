@@ -14,7 +14,7 @@ const GameList = () => {
     return stock.gamesInfo.types.map((el) => {
       if (el.id === stock.actualGameInfo.id) {
         return (
-          <GameButton theme={el.color} key={el.id}>
+          <GameButton color2={el.color} key={el.id + el.type}>
             <GameButtonText>{el.type}</GameButtonText>
           </GameButton>
         );
@@ -24,10 +24,10 @@ const GameList = () => {
             onPress={() => {
               dispatch(setActualGameInfo(el));
             }}
-            // color={el.color}
+            color={el.color}
             key={el.id}
           >
-            <GameButtonText>{el.type}</GameButtonText>
+            <GameButtonText color={el.color}>{el.type}</GameButtonText>
           </GameButton>
         );
       }

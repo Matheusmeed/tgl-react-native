@@ -5,8 +5,8 @@ export const Container = styled.ScrollView`
   flex: 1;
   padding-top: 30px;
   padding-left: 10px;
-  padding-right: 30px;
-  padding-bottom: 10px;
+  padding-right: 10px;
+  padding-bottom: 20px;
 `;
 
 export const BetTitle = styled.Text`
@@ -21,5 +21,13 @@ export const Subtitle = styled.Text`
   font-family: ${theme.fonts.boldItalic};
   color: ${theme.colors.primary};
   font-size: 15px;
-  margin-top: 5px;
+  margin-top: 7px;
+  margin-bottom: 2px;
+`;
+
+export const Description = styled.Text`
+  font-family: ${theme.fonts.regularItalic};
+  color: ${theme.colors.primary};
+  text-align: center;
+  margin-bottom: 6px;
 `;

@@ -38,10 +38,23 @@ export const alertWarning = (message: string, description?: string) => {
     style: { elevation: 2 },
   });
 };
+
 export const alertSuccess = (message: string, description?: string) => {
   showMessage({
     icon: 'success',
     type: 'success',
+    message: message,
+    description: description,
+    duration: 2000,
+    hideStatusBar: true,
+    floating: true,
+  });
+};
+
+export const alertInfo = (message: string, description?: string) => {
+  showMessage({
+    icon: 'info',
+    type: 'info',
     message: message,
     description: description,
     duration: 2000,
