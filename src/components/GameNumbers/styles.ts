@@ -46,4 +46,5 @@ export const GameBtn = styled.TouchableOpacity`
 
 export const GameBtnText = styled.Text`
   color: white;
+  font-size: 14px;
 `;

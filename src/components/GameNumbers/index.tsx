@@ -12,6 +12,7 @@ import {
   GameNumberButton,
   GameNumberButtonText,
 } from './styles';
+import { AntDesign } from '@expo/vector-icons';
 
 const GameNumbers = () => {
   const stock = useSelector((state: RootState) => state.stock);
@@ -106,9 +107,10 @@ const GameNumbers = () => {
           gamePrice: stock.actualGameInfo.price,
         })
       );
+      alertSuccess(
+        `Aposta ${stock.actualGameInfo.type} adicionada ao carrinho!`
+      );
     }
-
-    alertSuccess(`Aposta ${stock.actualGameInfo.type} adicionada ao carrinho!`);
   }
 
   return (
@@ -122,7 +124,10 @@ const GameNumbers = () => {
           <GameBtnText>Clear Game</GameBtnText>
         </GameBtn>
         <GameBtn onPress={() => handleAddToCart()}>
-          <GameBtnText>Add to cart</GameBtnText>
+          <GameBtnText>
+            Add to cart{' '}
+            <AntDesign name='shoppingcart' size={14} color='white' />
+          </GameBtnText>
         </GameBtn>
       </ContainerGameButtons>
     </>

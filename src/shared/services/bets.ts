@@ -25,6 +25,7 @@ export const newBet = async (
   games: [{ id: number; numbers: number[] }],
   minValue: number
 ) => {
+  console.log(games);
   let response;
   await api
     .post('/bet/new-bet', { games })
@@ -32,10 +33,11 @@ export const newBet = async (
       response = true;
       alertSuccess('Suas apostas foram salvas!');
     })
-    .catch((error) =>
+    .catch((error) => {
       error.response
         ? alertDanger('Erro', `O valor mínimo autorizado é R$${minValue},00!`)
-        : alertDanger('Aconteceu algum erro :(')
-    );
+        : alertDanger('Aconteceu algum erro :(');
+      console.log(error);
+    });
   return response;
 };

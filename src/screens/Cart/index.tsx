@@ -1,12 +1,8 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import CartCard from '../../components/CartCard';
 
 const Cart = () => {
-  return (
-    <View>
-      <Text>cart screen</Text>
-    </View>
-  );
+  return <CartCard />;
 };
 
 export default Cart;
