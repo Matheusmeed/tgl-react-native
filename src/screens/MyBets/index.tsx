@@ -43,10 +43,6 @@ const MyBets = () => {
   }
 
   useEffect(() => {
-    dispatch(setSelectedGames([]));
-  }, []);
-
-  useEffect(() => {
     getBets();
   }, [stock.selectedGames]);
 

@@ -7,10 +7,18 @@ import {
   FontAwesome5,
   FontAwesome,
 } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { clearCartNotification, setSelectedGames } from '../store/Stock.store';
+import { RootState } from '../store';
 
 const Tab = createBottomTabNavigator();
 
 const LoggedRoutes = () => {
+  const dispatch = useDispatch();
+  const notification = useSelector(
+    (state: RootState) => state.stock.cartNotification
+  );
+
   return (
     <Tab.Navigator
       initialRouteName='Bet'
@@ -40,15 +48,30 @@ const LoggedRoutes = () => {
       <Tab.Screen
         name='Cart'
         component={Cart}
+        listeners={{
+          tabPress: () => {
+            dispatch(clearCartNotification());
+          },
+        }}
         options={{
           tabBarIcon: ({ size, color }) => (
             <Entypo name='shopping-cart' size={size} color={color} />
           ),
+          tabBarBadge: notification ? notification : undefined,
+          tabBarBadgeStyle: {
+            backgroundColor: 'blue',
+            marginLeft: 8,
+          },
         }}
       />
       <Tab.Screen
         name='My Bets'
         component={MyBets}
+        listeners={{
+          tabPress: () => {
+            dispatch(setSelectedGames([]));
+          },
+        }}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name='cash-usd' size={size} color={color} />

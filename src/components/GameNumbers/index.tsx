@@ -3,7 +3,11 @@ import { View, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertInfo, alertSuccess } from '../../shared/helpers/Functions';
 import { RootState } from '../../store';
-import { setCartBetContent, setSelectedNumbers } from '../../store/Stock.store';
+import {
+  addCartNotification,
+  setCartBetContent,
+  setSelectedNumbers,
+} from '../../store/Stock.store';
 import {
   ContainerGameButtons,
   ContainerGameNumber,
@@ -107,6 +111,8 @@ const GameNumbers = () => {
           gamePrice: stock.actualGameInfo.price,
         })
       );
+      dispatch(addCartNotification());
+
       alertSuccess(
         `Aposta ${stock.actualGameInfo.type} adicionada ao carrinho!`
       );
@@ -125,7 +131,7 @@ const GameNumbers = () => {
         </GameBtn>
         <GameBtn onPress={() => handleAddToCart()}>
           <GameBtnText>
-            Add to cart{' '}
+            Add to cart{'  '}
             <AntDesign name='shoppingcart' size={14} color='white' />
           </GameBtnText>
         </GameBtn>

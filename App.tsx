@@ -15,6 +15,7 @@ import Routes from './src/routes';
 
 import { Provider } from 'react-redux';
 import store from './src/store';
+import { SafeAreaView, View } from 'react-native';
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +29,7 @@ export default function App() {
   }
 
   return (
-    <WrapperContainer>
+    <WrapperContainer style={{ backgroundColor: 'red' }}>
       <Provider store={store}>
         <Routes />
       </Provider>

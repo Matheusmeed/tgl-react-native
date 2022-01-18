@@ -30,6 +30,7 @@ const stock = createSlice({
     cartBetContent: {},
     betList: [{}],
     resetToken: '',
+    cartNotification: 0,
   } as IInitialState,
   reducers: {
     saveUserInfo(state, action: IUserInfoAction) {
@@ -87,6 +88,14 @@ const stock = createSlice({
     setResetToken(state, action) {
       state.resetToken = action.payload;
     },
+
+    addCartNotification(state) {
+      state.cartNotification += 1;
+    },
+
+    clearCartNotification(state) {
+      state.cartNotification = 0;
+    },
   },
 });
 
@@ -103,6 +112,8 @@ export const {
   clearCartBetContent,
   setResetToken,
   changeUserName,
+  addCartNotification,
+  clearCartNotification,
 } = stock.actions;
 
 export default stock.reducer;
