@@ -3,7 +3,7 @@ import { Container, StyledText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
 import AuthCard from '../AuthCard';
 import { useNavigation } from '@react-navigation/native';
-import { AuthProps, NavigationProps } from '../@types/AuthProps';
+import { AuthProps, NavigationProps } from '../types/AuthProps';
 import { useEffect, useState } from 'react';
 
 const AuthDiv = (props: AuthProps) => {

@@ -1,8 +1,11 @@
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import React, { useEffect, useState } from 'react';
 import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import GameList from '../../components/GameList';
 import GameNumbers from '../../components/GameNumbers';
+import { NavigationProps } from '../../components/types/AuthProps';
 import { listGames } from '../../shared';
 import { theme } from '../../shared/styles/theme';
 import { RootState } from '../../store';
@@ -10,10 +13,8 @@ import { addGamesInfo, setActualGameInfo } from '../../store/Stock.store';
 import { BetTitle, Container, Subtitle, Description } from './styles';
 
 const Bet = () => {
-  const [error, setError] = useState(false);
-  const [loading, setLoading] = useState(true);
-
   const dispatch = useDispatch();
+  const navigation = useNavigation<NavigationProps>();
   const stock = useSelector((state: RootState) => state.stock);
 
   useEffect(() => {
@@ -25,10 +26,6 @@ const Bet = () => {
     if (data) {
       dispatch(addGamesInfo(data[0]));
       dispatch(setActualGameInfo(data[1]));
-      setLoading(false);
-    } else {
-      setError(true);
-      setLoading(false);
     }
   }
 

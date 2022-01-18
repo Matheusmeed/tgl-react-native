@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertInfo, alertSuccess } from '../../shared/helpers/Functions';
 import { RootState } from '../../store';
@@ -111,6 +110,7 @@ const GameNumbers = () => {
           gamePrice: stock.actualGameInfo.price,
         })
       );
+
       dispatch(addCartNotification());
 
       alertSuccess(
