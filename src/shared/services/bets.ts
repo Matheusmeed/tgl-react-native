@@ -22,7 +22,7 @@ export const listBet = async (games: string[]) => {
 };
 
 export const newBet = async (
-  games: [{ id: number; numbers: number[] }],
+  games: [{ game_id: number; numbers: number[] }],
   minValue: number
 ) => {
   console.log(games);

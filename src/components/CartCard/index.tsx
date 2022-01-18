@@ -86,19 +86,19 @@ const CartCard = () => {
   async function handleSave() {
     if (stock.betList.length === 1) {
       alertDanger(
-        'Seu carrinho está vazio!.',
+        'Seu carrinho está vazio!',
         'Adicione suas apostas para poder salvá-las'
       );
     } else {
-      const games: [{ id: number; numbers: number[] }] = [
-        { id: 0, numbers: [] },
+      const games: [{ game_id: number; numbers: number[] }] = [
+        { game_id: 0, numbers: [] },
       ];
 
       stock.betList.forEach((bet) => {
         if (bet.gameName) {
           stock.gamesInfo.types.forEach((game) => {
             if (bet.gameName === game.type) {
-              games.push({ id: game.id, numbers: bet.selectedNumbers });
+              games.push({ game_id: game.id, numbers: bet.selectedNumbers });
             }
           });
         }
@@ -108,7 +108,6 @@ const CartCard = () => {
 
       if (data) {
         dispatch(clearBetList([{}]));
-        // navigate('/mybets');
       }
       dispatch(setSelectedGames([]));
     }
