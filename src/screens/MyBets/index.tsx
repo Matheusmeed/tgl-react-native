@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import GamesFilter from '../../components/GamesFilter';
 import { formatDate, formatPrice, listBet } from '../../shared';
 import { RootState } from '../../store';
@@ -49,7 +49,7 @@ const MyBets = () => {
 
   return (
     <Container>
-      <GamesFilter disabled={false} />
+      <GamesFilter disabled={savedBets.length ? false : true} />
 
       <BetInfoDiv>
         <View style={{ alignItems: 'center' }}>
