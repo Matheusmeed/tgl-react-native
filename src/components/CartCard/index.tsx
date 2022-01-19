@@ -116,7 +116,7 @@ const CartCard = () => {
   return (
     <Container>
       <Card>
-        <Title>CART</Title>
+        <Title style={{ paddingBottom: 5 }}>CART</Title>
 
         <ListView>
           {stock.betList.length > 1 ? (
