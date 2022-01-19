@@ -15,7 +15,6 @@ import {
   TotalDiv,
 } from './styles';
 import {
-  addBetsNotification,
   clearBetList,
   clearCartBetContent,
   setBetList,
@@ -26,10 +25,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@store/index';
 import { alertDanger, formatPrice, newBet, theme } from '@shared/index';
 import { Ionicons } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
+import { NavigationProps } from '@components/types/AuthProps';
 
 const CartCard = () => {
   const stock = useSelector((state: RootState) => state.stock);
   const dispatch = useDispatch();
+  const navigation: NavigationProps = useNavigation();
 
   useEffect(() => {
     if (stock.cartBetContent !== undefined && stock.cartBetContent.gameName) {
@@ -105,7 +107,7 @@ const CartCard = () => {
 
       if (data) {
         dispatch(clearBetList([{}]));
-        dispatch(addBetsNotification());
+        navigation.navigate('My Bets');
       }
       dispatch(setSelectedGames([]));
     }

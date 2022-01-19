@@ -9,11 +9,7 @@ import {
   FontAwesome,
 } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  clearBetsNotification,
-  clearCartNotification,
-  setSelectedGames,
-} from '../store/Stock.store';
+import { clearCartNotification, setSelectedGames } from '../store/Stock.store';
 import { RootState } from '../store';
 
 const Tab = createBottomTabNavigator();
@@ -75,20 +71,12 @@ const LoggedRoutes = () => {
         listeners={{
           tabPress: () => {
             dispatch(setSelectedGames([]));
-            dispatch(clearBetsNotification());
           },
         }}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name='cash-usd' size={size} color={color} />
           ),
-          tabBarBadge: stock.betsNotification
-            ? stock.betsNotification
-            : undefined,
-          tabBarBadgeStyle: {
-            backgroundColor: 'red',
-            marginLeft: 8,
-          },
         }}
       />
       <Tab.Screen
