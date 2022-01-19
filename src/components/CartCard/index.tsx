@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text } from 'react-native';
 import {
   BetInfoDiv,
   Card,
@@ -14,26 +14,22 @@ import {
   Title,
   TotalDiv,
 } from './styles';
-import { AntDesign } from '@expo/vector-icons';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { useNavigation } from '@react-navigation/native';
 import {
   addBetsNotification,
   clearBetList,
   clearCartBetContent,
   setBetList,
   setSelectedGames,
-} from '../../store/Stock.store';
-import { alertDanger, formatPrice } from '../../shared/helpers/Functions';
-import { newBet } from '../../shared';
+} from '@store/Stock.store';
+import { AntDesign } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/index';
+import { alertDanger, formatPrice, newBet, theme } from '@shared/index';
 import { Ionicons } from '@expo/vector-icons';
-import { theme } from '../../shared/styles/theme';
 
 const CartCard = () => {
   const stock = useSelector((state: RootState) => state.stock);
   const dispatch = useDispatch();
-  //   const navigate = useNavigation();
 
   useEffect(() => {
     if (stock.cartBetContent !== undefined && stock.cartBetContent.gameName) {

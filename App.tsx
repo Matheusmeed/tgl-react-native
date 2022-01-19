@@ -4,7 +4,6 @@ import { StatusBar } from 'expo-status-bar';
 import { WrapperContainer } from './styles';
 import AppLoading from 'expo-app-loading';
 import FlashMessage from 'react-native-flash-message';
-
 import {
   Roboto_400Regular_Italic,
   Roboto_500Medium_Italic,
@@ -12,9 +11,8 @@ import {
   useFonts,
 } from '@expo-google-fonts/roboto';
 import Routes from './src/routes';
-
 import { Provider } from 'react-redux';
-import store from './src/store';
+import store from '@store/index';
 
 export default function App() {
   const [fontsLoaded] = useFonts({

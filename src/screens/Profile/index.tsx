@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { Entypo } from '@expo/vector-icons';
-
 import {
   AccountInfoView,
   Container,
@@ -13,11 +12,11 @@ import {
   BtnLeave,
   BtnLeaveTxt,
 } from './styles';
-import ModalProfile from '../../components/Modal';
+import { ModalProfile } from '@components/index';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { formatDate } from '../../shared';
-import { clearBetList, removeUserInfo } from '../../store/Stock.store';
+import { RootState } from '@store/index';
+import { formatDate } from '@shared/index';
+import { clearBetList, removeUserInfo } from '@store/Stock.store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Profile = () => {

@@ -4,6 +4,7 @@ import { updateUser, createUser } from '@shared/services/user';
 import { listGames } from '@shared/services/games';
 import { listBet, newBet } from '@shared/services/bets';
 import { login, changePass, resetPass } from '@shared/services/auth';
+import { theme } from '@shared/styles/theme';
 import {
   alertDanger,
   alertInfo,
@@ -16,6 +17,7 @@ export {
   passRegex,
   emailRegex,
   nameRegex,
+  theme,
   formatPrice,
   formatDate,
   getToken,

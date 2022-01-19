@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { RootState } from '@store/index';
 import { NavigationContainer } from '@react-navigation/native';
 import NotLoggedRoutes from './NotLoggedRoutes';
 import LoggedRoutes from './Logged.routes';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store';
 
 const Routes = () => {
   const token = useSelector(

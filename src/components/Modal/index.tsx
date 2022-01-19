@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { View, Text, Modal, Pressable, TextInput } from 'react-native';
+import { Modal, Pressable, TextInput } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '@store/index';
+import { changeUserName } from '@store/Stock.store';
 import {
   changePass,
   nameRegex,
   passRegex,
   resetPass,
   updateUser,
-} from '../../shared';
-import { alertWarning } from '../../shared/helpers/Functions';
-import { RootState } from '../../store';
-import { changeUserName } from '../../store/Stock.store';
+  alertWarning,
+} from '@shared/index';
 import {
   Container,
   OuterView,

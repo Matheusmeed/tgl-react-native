@@ -7,6 +7,7 @@ import GameNumbers from '@components/GameNumbers';
 import GamesFilter from '@components/GamesFilter';
 import ModalProfile from '@components/Modal';
 import Title from '@components/Title';
+import { AuthProps, NavigationProps } from '@components/types/AuthProps';
 
 export {
   AuthCard,
@@ -18,4 +19,6 @@ export {
   GameNumbers,
   GamesFilter,
   ModalProfile,
+  AuthProps,
+  NavigationProps,
 };

@@ -1,7 +1,6 @@
 import React from 'react';
-import AuthDiv from '../../components/AuthDiv';
-import Title from '../../components/Title';
 import { Container } from './style';
+import { AuthDiv, Title } from '@components/index';
 
 const Auth = () => {
   return (

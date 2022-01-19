@@ -1,8 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { setSelectedGames } from '../../store/Stock.store';
+import { RootState } from '@store/index';
+import { setSelectedGames } from '@store/Stock.store';
 import { Container, GameFilterBtn, GameFilterBtnText } from './styles';
 
 interface IGamesFilterProps {

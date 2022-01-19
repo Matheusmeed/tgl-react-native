@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { alertInfo, alertSuccess } from '../../shared/helpers/Functions';
-import { RootState } from '../../store';
+import { alertInfo, alertSuccess } from '@shared/index';
+import { RootState } from '@store/index';
+import { NavigationProps } from '@components/index';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 import {
   addCartNotification,
   setCartBetContent,
   setSelectedNumbers,
-} from '../../store/Stock.store';
+} from '@store/Stock.store';
 import {
   ContainerGameButtons,
   ContainerGameNumber,
@@ -15,9 +18,6 @@ import {
   GameNumberButton,
   GameNumberButtonText,
 } from './styles';
-import { AntDesign } from '@expo/vector-icons';
-import { NavigationProps } from '../types/AuthProps';
-import { useNavigation } from '@react-navigation/native';
 
 const GameNumbers = () => {
   const stock = useSelector((state: RootState) => state.stock);

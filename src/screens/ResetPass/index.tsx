@@ -1,7 +1,5 @@
 import React from 'react';
-import { Text } from 'react-native';
-import AuthDiv from '../../components/AuthDiv';
-import Title from '../../components/Title';
+import { AuthDiv, Title } from '@components/index';
 import { Container } from './styles';
 
 const ResetPass = () => {

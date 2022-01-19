@@ -1,11 +1,13 @@
 import React from 'react';
+import { useEffect, useState } from 'react';
 import { Text, TextInput, TouchableOpacity } from 'react-native';
 import { Container, InputView, MainButtonDiv, MainButtonText } from './styles';
-import { Ionicons } from '@expo/vector-icons';
-import { AuthProps, NavigationProps } from '../types/AuthProps';
-import { theme } from '../../shared/styles/theme';
+import { saveUserInfo, setResetToken } from '@store/Stock.store';
+import { RootState } from '@store/index';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { AuthProps, NavigationProps, ErrorMessage } from '@components/index';
 import {
   login,
   passRegex,
@@ -14,12 +16,10 @@ import {
   createUser,
   changePass,
   resetPass,
-} from '../../shared';
-import { useDispatch, useSelector } from 'react-redux';
-import { RootState } from '../../store';
-import { saveUserInfo, setResetToken } from '../../store/Stock.store';
-import ErrorMessage from '../ErrorMessage';
-import { alertDanger, alertWarning } from '../../shared/helpers/Functions';
+  alertDanger,
+  alertWarning,
+  theme,
+} from '@shared/index';
 
 const AuthCard = (props: AuthProps) => {
   const navigation = useNavigation<NavigationProps>();

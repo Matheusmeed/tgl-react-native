@@ -1,14 +1,13 @@
+import React from 'react';
+import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Container, StyledText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
-import AuthCard from '../AuthCard';
+import { AuthCard, AuthProps, NavigationProps } from '@components/index';
 import { useNavigation } from '@react-navigation/native';
-import { AuthProps, NavigationProps } from '../types/AuthProps';
-import { useEffect, useState } from 'react';
 
 const AuthDiv = (props: AuthProps) => {
   const navigation = useNavigation<NavigationProps>();
-
   const [title, setTitle] = useState('Authentication');
 
   useEffect(() => {

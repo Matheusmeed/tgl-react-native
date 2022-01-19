@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Text, View } from 'react-native';
 import { useSelector } from 'react-redux';
-import GamesFilter from '../../components/GamesFilter';
-import { formatDate, formatPrice, listBet } from '../../shared';
-import { RootState } from '../../store';
+import { GamesFilter } from '@components/index';
+import { formatDate, formatPrice, listBet } from '@shared/index';
+import { RootState } from '@store/index';
 import { styles } from './styles';
 import {
   BetInfoDiv,

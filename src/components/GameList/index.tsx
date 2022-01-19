@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import { View, Text } from 'react-native';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { listGames } from '../../shared';
-import { RootState } from '../../store';
-import { addGamesInfo, setActualGameInfo } from '../../store/Stock.store';
+import { RootState } from '@store/index';
+import { setActualGameInfo } from '@store/Stock.store';
 import { Container, GameButton, GameButtonText } from './styles';
 
 const GameList = () => {
