@@ -149,7 +149,7 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => check()}
             ></TextInput>
           </InputView>
-          {nameError && <ErrorMessage>Nome incorreto</ErrorMessage>}
+          {nameError && <ErrorMessage>Nome inválido</ErrorMessage>}
         </>
       )}
       {props.hasEmail && (
@@ -162,7 +162,7 @@ const AuthCard = (props: AuthProps) => {
             ></TextInput>
           </InputView>
           {props.screen !== 'Authentication' && emailError && (
-            <ErrorMessage>Email incorreto</ErrorMessage>
+            <ErrorMessage>Email inválido</ErrorMessage>
           )}
         </>
       )}
@@ -177,7 +177,7 @@ const AuthCard = (props: AuthProps) => {
             ></TextInput>
           </InputView>
           {props.screen !== 'Authentication' && passError && (
-            <ErrorMessage>Senha incorreta</ErrorMessage>
+            <ErrorMessage>Senha inválida</ErrorMessage>
           )}
         </>
       )}
@@ -192,7 +192,7 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => checkResetPass(1)}
             ></TextInput>
           </InputView>
-          {passError && <ErrorMessage>Senha incorreta</ErrorMessage>}
+          {passError && <ErrorMessage>Senha inválida</ErrorMessage>}
 
           <InputView>
             <TextInput
@@ -202,7 +202,7 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => checkResetPass(2)}
             ></TextInput>
           </InputView>
-          {pass2Error && <ErrorMessage>Senha incorreta</ErrorMessage>}
+          {pass2Error && <ErrorMessage>Senha inválida</ErrorMessage>}
         </>
       )}
 
