@@ -7,7 +7,8 @@ import { RootState } from '@store/index';
 import { useNavigation } from '@react-navigation/native';
 import { Ionicons } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { AuthProps, NavigationProps, ErrorMessage } from '@components/index';
+import ErrorMessage from '../ErrorMessage';
+import { AuthProps, NavigationProps } from '../types/AuthProps';
 import {
   login,
   passRegex,

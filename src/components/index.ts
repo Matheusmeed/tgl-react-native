@@ -1,13 +1,13 @@
-import AuthCard from '@components/AuthCard';
-import AuthDiv from '@components/AuthDiv';
-import CartCard from '@components/CartCard';
-import ErrorMessage from '@components/ErrorMessage';
-import GameList from '@components/GameList';
-import GameNumbers from '@components/GameNumbers';
-import GamesFilter from '@components/GamesFilter';
-import ModalProfile from '@components/Modal';
-import Title from '@components/Title';
-import { AuthProps, NavigationProps } from '@components/types/AuthProps';
+import AuthCard from './AuthCard';
+import AuthDiv from './AuthDiv';
+import CartCard from './CartCard';
+import ErrorMessage from './ErrorMessage';
+import GameList from './GameList';
+import GameNumbers from './GameNumbers';
+import GamesFilter from './GamesFilter';
+import ModalProfile from './Modal';
+import Title from './Title';
+import { AuthProps, NavigationProps } from './types/AuthProps';
 
 export {
   AuthCard,

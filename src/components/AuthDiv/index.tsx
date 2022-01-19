@@ -3,7 +3,8 @@ import { useEffect, useState } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Container, StyledText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthCard, AuthProps, NavigationProps } from '@components/index';
+import AuthCard from '../AuthCard';
+import { AuthProps, NavigationProps } from '../types/AuthProps';
 import { useNavigation } from '@react-navigation/native';
 
 const AuthDiv = (props: AuthProps) => {
