@@ -34,48 +34,46 @@ const Profile = () => {
   }
 
   return (
-    <>
-      <Container>
-        <Card>
-          <AccountInfoView>
-            <Title>Nome</Title>
-            <TextInfo>{userInfo.name}</TextInfo>
-            <Title>Email</Title>
-            <TextInfo>{userInfo.email}</TextInfo>
-            <Title>Conta criada em</Title>
-            <TextInfo>{formatDate(userInfo.created_at)}</TextInfo>
-          </AccountInfoView>
-          <BtnsView>
-            <Button
-              onPress={() => {
-                setModalType('name');
-                setModalActive(true);
-              }}
-            >
-              <TextButton>Alterar nome</TextButton>
-            </Button>
-            <Button
-              onPress={() => {
-                setModalType('password');
-                setModalActive(true);
-              }}
-            >
-              <TextButton>Alterar senha</TextButton>
-            </Button>
-          </BtnsView>
-        </Card>
-        <BtnLeave>
-          <BtnLeaveTxt onPress={handleLeave}>
-            Sair <Entypo name='log-out' size={15} color='red' />
-          </BtnLeaveTxt>
-        </BtnLeave>
-        <ModalProfile
-          modalActive={modalActive}
-          setModalActive={setModalActive}
-          type={modalType}
-        />
-      </Container>
-    </>
+    <Container>
+      <Card>
+        <AccountInfoView>
+          <Title>Nome</Title>
+          <TextInfo>{userInfo.name}</TextInfo>
+          <Title>Email</Title>
+          <TextInfo>{userInfo.email}</TextInfo>
+          <Title>Conta criada em</Title>
+          <TextInfo>{formatDate(userInfo.created_at)}</TextInfo>
+        </AccountInfoView>
+        <BtnsView>
+          <Button
+            onPress={() => {
+              setModalType('name');
+              setModalActive(true);
+            }}
+          >
+            <TextButton>Alterar nome</TextButton>
+          </Button>
+          <Button
+            onPress={() => {
+              setModalType('password');
+              setModalActive(true);
+            }}
+          >
+            <TextButton>Alterar senha</TextButton>
+          </Button>
+        </BtnsView>
+      </Card>
+      <BtnLeave>
+        <BtnLeaveTxt onPress={handleLeave}>
+          Sair <Entypo name='log-out' size={15} color='red' />
+        </BtnLeaveTxt>
+      </BtnLeave>
+      <ModalProfile
+        modalActive={modalActive}
+        setModalActive={setModalActive}
+        type={modalType}
+      />
+    </Container>
   );
 };
 

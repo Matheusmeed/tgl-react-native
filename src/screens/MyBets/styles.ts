@@ -2,14 +2,13 @@ import { StyleSheet } from 'react-native';
 import styled from 'styled-components/native';
 import { theme } from '../../shared/styles/theme';
 
-export const Container = styled.ScrollView`
+export const Container = styled.View`
   flex: 1;
 `;
 
-export const BetInfoDiv = styled.View`
+export const BetInfoDiv = styled.ScrollView`
   margin-top: 20px;
-  align-items: center;
-  margin-bottom: 10px;
+  /* margin-bottom: 10px; */
 `;
 
 export const OwnBet = styled.View<{ color?: string }>`

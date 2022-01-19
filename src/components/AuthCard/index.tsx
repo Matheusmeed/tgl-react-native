@@ -1,7 +1,7 @@
 import { Text, TextInput, TouchableOpacity } from 'react-native';
 import { Container, InputView, MainButtonDiv, MainButtonText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
-import { AuthProps, NavigationProps } from '../@types/AuthProps';
+import { AuthProps, NavigationProps } from '../types/AuthProps';
 import { theme } from '../../shared/styles/theme';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect, useState } from 'react';

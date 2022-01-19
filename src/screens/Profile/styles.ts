@@ -2,8 +2,7 @@ import styled from 'styled-components/native';
 import { theme } from '../../shared/styles/theme';
 
 export const Container = styled.ScrollView`
-  flex: 1;
-  padding-top: 40px;
+  padding-top: 30%;
   padding-left: 10px;
   padding-right: 10px;
   padding-bottom: 10px;

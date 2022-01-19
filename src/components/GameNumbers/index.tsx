@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { alertInfo, alertSuccess } from '../../shared/helpers/Functions';
 import { RootState } from '../../store';
@@ -16,10 +16,15 @@ import {
   GameNumberButtonText,
 } from './styles';
 import { AntDesign } from '@expo/vector-icons';
+import { NavigationProps } from '../types/AuthProps';
+import { useNavigation } from '@react-navigation/native';
 
 const GameNumbers = () => {
   const stock = useSelector((state: RootState) => state.stock);
+  const navigation: NavigationProps = useNavigation();
   const dispatch = useDispatch();
+
+  const [first, setFirst] = useState(true);
   let numbers: number[] = [];
 
   useEffect(() => {
@@ -111,11 +116,18 @@ const GameNumbers = () => {
         })
       );
 
-      dispatch(addCartNotification());
-
-      alertSuccess(
-        `Aposta ${stock.actualGameInfo.type} adicionada ao carrinho!`
-      );
+      if (first) {
+        alertSuccess(
+          `Aposta ${stock.actualGameInfo.type} adicionada ao carrinho!`
+        );
+        navigation.navigate('Cart');
+        setFirst(false);
+      } else {
+        alertSuccess(
+          `Aposta ${stock.actualGameInfo.type} adicionada ao carrinho!`
+        );
+        dispatch(addCartNotification());
+      }
     }
   }
 
