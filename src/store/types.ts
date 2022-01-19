@@ -81,6 +81,7 @@ interface IInitialState {
   betList: IBetList[];
   resetToken: string;
   cartNotification: number;
+  betsNotification: number;
 }
 
 export type {

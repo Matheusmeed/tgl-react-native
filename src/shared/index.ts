@@ -1,9 +1,9 @@
-import { passRegex, emailRegex, nameRegex } from './helpers/Regex';
-import { getToken } from './helpers/UserToken';
-import { updateUser, createUser } from './services/user';
-import { listGames } from './services/games';
-import { listBet, newBet } from './services/bets';
-import { login, changePass, resetPass } from './services/auth';
+import { passRegex, emailRegex, nameRegex } from '@shared/helpers/Regex';
+import { getToken } from '@shared/helpers/UserToken';
+import { updateUser, createUser } from '@shared/services/user';
+import { listGames } from '@shared/services/games';
+import { listBet, newBet } from '@shared/services/bets';
+import { login, changePass, resetPass } from '@shared/services/auth';
 import {
   alertDanger,
   alertInfo,

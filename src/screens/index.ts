@@ -1,11 +1,11 @@
-import Auth from './Auth';
-import Registration from './Registration';
-import ResetPass from './ResetPass';
-import ForgotPass from './ForgotPass';
-import Bet from './Bet';
-import MyBets from './MyBets';
-import Profile from './Profile';
-import Cart from './Cart';
+import Auth from '@screens/Auth';
+import Registration from '@screens/Registration';
+import ResetPass from '@screens/ResetPass';
+import ForgotPass from '@screens/ForgotPass';
+import Bet from '@screens/Bet';
+import MyBets from '@screens/MyBets';
+import Profile from '@screens/Profile';
+import Cart from '@screens/Cart';
 
 export {
   Auth,

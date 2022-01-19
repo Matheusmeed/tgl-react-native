@@ -102,7 +102,9 @@ const GameNumbers = () => {
   function handleAddToCart() {
     if (stock.selectedNumbers.length < stock.actualGameInfo.max_number) {
       alertInfo(
-        `Você precisa escolher mais ${stock.selectedNumbers.length} número(s)`
+        `Você precisa escolher mais ${
+          stock.actualGameInfo.max_number - stock.selectedNumbers.length
+        } número(s)`
       );
     } else {
       clearGame();

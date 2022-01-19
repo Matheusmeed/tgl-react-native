@@ -19,6 +19,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import { useNavigation } from '@react-navigation/native';
 import {
+  addBetsNotification,
   clearBetList,
   clearCartBetContent,
   setBetList,
@@ -108,6 +109,7 @@ const CartCard = () => {
 
       if (data) {
         dispatch(clearBetList([{}]));
+        dispatch(addBetsNotification());
       }
       dispatch(setSelectedGames([]));
     }

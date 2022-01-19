@@ -1,3 +1,4 @@
+import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Bet, Cart, MyBets, Profile } from '../screens';
 import { theme } from '../shared/styles/theme';
@@ -8,16 +9,18 @@ import {
   FontAwesome,
 } from '@expo/vector-icons';
 import { useDispatch, useSelector } from 'react-redux';
-import { clearCartNotification, setSelectedGames } from '../store/Stock.store';
+import {
+  clearBetsNotification,
+  clearCartNotification,
+  setSelectedGames,
+} from '../store/Stock.store';
 import { RootState } from '../store';
 
 const Tab = createBottomTabNavigator();
 
 const LoggedRoutes = () => {
   const dispatch = useDispatch();
-  const notification = useSelector(
-    (state: RootState) => state.stock.cartNotification
-  );
+  const stock = useSelector((state: RootState) => state.stock);
 
   return (
     <Tab.Navigator
@@ -57,9 +60,11 @@ const LoggedRoutes = () => {
           tabBarIcon: ({ size, color }) => (
             <Entypo name='shopping-cart' size={size} color={color} />
           ),
-          tabBarBadge: notification ? notification : undefined,
+          tabBarBadge: stock.cartNotification
+            ? stock.cartNotification
+            : undefined,
           tabBarBadgeStyle: {
-            backgroundColor: 'blue',
+            backgroundColor: 'red',
             marginLeft: 8,
           },
         }}
@@ -70,12 +75,20 @@ const LoggedRoutes = () => {
         listeners={{
           tabPress: () => {
             dispatch(setSelectedGames([]));
+            dispatch(clearBetsNotification());
           },
         }}
         options={{
           tabBarIcon: ({ size, color }) => (
             <MaterialCommunityIcons name='cash-usd' size={size} color={color} />
           ),
+          tabBarBadge: stock.betsNotification
+            ? stock.betsNotification
+            : undefined,
+          tabBarBadgeStyle: {
+            backgroundColor: 'red',
+            marginLeft: 8,
+          },
         }}
       />
       <Tab.Screen
