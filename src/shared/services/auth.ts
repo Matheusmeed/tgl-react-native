@@ -1,3 +1,4 @@
+import React from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { alertDanger, alertSuccess } from '../helpers/Functions';
 import api from './api';
@@ -5,6 +6,7 @@ import api from './api';
 interface ILogin {
   email: string;
   password: string;
+  register?: boolean;
 }
 
 export const login = async (content: ILogin) => {
@@ -17,7 +19,11 @@ export const login = async (content: ILogin) => {
     })
     .then(async (res) => {
       await AsyncStorage.setItem('token', res.data.token.token);
-      alertSuccess('Login realizado');
+      if (content.register) {
+        alertSuccess('Conta criada com sucesso!');
+      } else {
+        alertSuccess('Login realizado!');
+      }
 
       response = res.data;
     })

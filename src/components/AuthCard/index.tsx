@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, TextInput, TouchableOpacity } from 'react-native';
 import { Container, InputView, MainButtonDiv, MainButtonText } from './styles';
 import { Ionicons } from '@expo/vector-icons';
@@ -52,7 +53,11 @@ const AuthCard = (props: AuthProps) => {
       const data = await createUser(email, name, pass);
 
       if (data) {
-        const dataLogin = await login({ email: email, password: pass });
+        const dataLogin = await login({
+          email: email,
+          password: pass,
+          register: true,
+        });
         if (dataLogin) {
           dispatch(saveUserInfo(dataLogin));
         }

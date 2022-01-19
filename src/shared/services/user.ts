@@ -11,7 +11,6 @@ export const createUser = async (email: string, name: string, pass: string) => {
     })
     .then((res) => {
       response = res.data;
-      alertSuccess('Conta criada com sucesso!');
     })
     .catch(() => {
       alertDanger('Esse email já existe!');
