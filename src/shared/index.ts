@@ -4,7 +4,12 @@ import { updateUser, createUser } from './services/user';
 import { listGames } from './services/games';
 import { listBet, newBet } from './services/bets';
 import { login, changePass, resetPass } from './services/auth';
-// import { Notification } from './helpers/Notification';
+import {
+  alertDanger,
+  alertInfo,
+  alertSuccess,
+  alertWarning,
+} from './helpers/Functions';
 import { formatDate, formatPrice } from './helpers/Functions';
 
 export {
@@ -13,7 +18,6 @@ export {
   nameRegex,
   formatPrice,
   formatDate,
-  //   Notification,
   getToken,
   updateUser,
   createUser,
@@ -23,4 +27,8 @@ export {
   login,
   changePass,
   resetPass,
+  alertDanger,
+  alertInfo,
+  alertWarning,
+  alertSuccess,
 };

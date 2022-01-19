@@ -130,7 +130,6 @@ const AuthCard = (props: AuthProps) => {
     if (nameRegex.test(name)) {
       setNameError(false);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [email, pass, name, pass2]);
 
   return (
