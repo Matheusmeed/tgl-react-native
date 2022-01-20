@@ -27,8 +27,8 @@ export const login = async (content: ILogin) => {
 
       response = res.data;
     })
-    .catch(() => {
-      alertDanger('Essa conta não existe...');
+    .catch((error) => {
+      alertDanger('Algum dado está incorreto');
 
       response = false;
     });
