@@ -1,9 +1,8 @@
+import moment from 'moment';
 import { showMessage } from 'react-native-flash-message';
 
 export const formatDate = (data: string) => {
-  let formattedDate = new Date(data).toLocaleDateString('pt-br', {
-    timeZone: 'UTC',
-  });
+  let formattedDate = moment(new Date(data)).format('DD/MM/YYYY');
   return formattedDate;
 };
 
