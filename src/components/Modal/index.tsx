@@ -96,6 +96,7 @@ const ModalProfile = (props: Props) => {
                 <TextInput
                   style={{ width: '100%' }}
                   placeholder='Nome'
+                  defaultValue={stock.userInfo.user.name}
                   onChangeText={(text) => setName(text)}
                 ></TextInput>
               </InputView>
