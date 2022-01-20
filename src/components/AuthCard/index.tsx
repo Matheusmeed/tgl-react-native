@@ -149,7 +149,11 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => check()}
             ></TextInput>
           </InputView>
-          {nameError && <ErrorMessage>Nome inválido</ErrorMessage>}
+          {nameError && (
+            <ErrorMessage>
+              Seu nome deve iniciar com uma letra maiúscula.
+            </ErrorMessage>
+          )}
         </>
       )}
       {props.hasEmail && (
@@ -162,7 +166,9 @@ const AuthCard = (props: AuthProps) => {
             ></TextInput>
           </InputView>
           {props.screen !== 'Authentication' && emailError && (
-            <ErrorMessage>Email inválido</ErrorMessage>
+            <ErrorMessage>
+              Seu email deve ter a seguinte formatação: exemplo@exemplo.com
+            </ErrorMessage>
           )}
         </>
       )}
@@ -177,7 +183,9 @@ const AuthCard = (props: AuthProps) => {
             ></TextInput>
           </InputView>
           {props.screen !== 'Authentication' && passError && (
-            <ErrorMessage>Senha inválida</ErrorMessage>
+            <ErrorMessage>
+              Sua senha deve conter 6 caracteres, incluindo um número.
+            </ErrorMessage>
           )}
         </>
       )}
@@ -192,7 +200,11 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => checkResetPass(1)}
             ></TextInput>
           </InputView>
-          {passError && <ErrorMessage>Senha inválida</ErrorMessage>}
+          {passError && (
+            <ErrorMessage>
+              Sua senha deve conter 6 caracteres, incluindo um número.
+            </ErrorMessage>
+          )}
 
           <InputView>
             <TextInput
@@ -202,7 +214,11 @@ const AuthCard = (props: AuthProps) => {
               onBlur={() => checkResetPass(2)}
             ></TextInput>
           </InputView>
-          {pass2Error && <ErrorMessage>Senha inválida</ErrorMessage>}
+          {pass2Error && (
+            <ErrorMessage>
+              Sua senha deve conter 6 caracteres, incluindo um número.
+            </ErrorMessage>
+          )}
         </>
       )}
 

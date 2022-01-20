@@ -5,6 +5,7 @@ export const Container = styled.View`
   background-color: #ff6060;
   padding: 5px;
   padding-left: 22px;
+  padding-right: 10px;
 `;
 
 export const TextError = styled.Text`
