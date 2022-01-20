@@ -173,7 +173,7 @@ const CartCard = () => {
         </ListView>
 
         <TotalDiv>
-          <Title>TOTAL: R$ {stock.betList.length ? total() : '0,00'}</Title>
+          <Title>TOTAL: R$ {stock.betList.length > 1 ? total() : '0,00'}</Title>
         </TotalDiv>
 
         <SaveButton onPress={handleSave}>

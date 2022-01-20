@@ -8,10 +8,8 @@ export const formatDate = (data: string) => {
 };
 
 export const formatPrice = (value: number) => {
-  let formattedPrice = value.toLocaleString('pt-br', {
-    minimumFractionDigits: 2,
-  });
-  return formattedPrice;
+  let formattedValue = value.toFixed(2).toString().replace('.', ',');
+  return formattedValue;
 };
 
 export const alertDanger = (message: string, description?: string) => {
